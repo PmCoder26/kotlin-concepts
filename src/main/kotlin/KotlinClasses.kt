@@ -78,6 +78,9 @@ open class Metal {      // class with the variables that are read-only
     val name: String        // provides read-only ability.
         get() = "Metal"
 
+    public var metalPurity: Double = 0.89       // visible publicly and can be modified(set) inside the class only
+        private set
+
 }
 
 
