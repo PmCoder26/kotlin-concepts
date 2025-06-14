@@ -28,5 +28,7 @@ bin/
 ### Mac OS ###
 .DS_Store
 
-# for project build
+# for gradle project
+.gradle/
 build/
+!gradle/wrapper/gradle-wrapper.jar
