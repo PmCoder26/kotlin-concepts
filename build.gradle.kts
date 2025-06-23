@@ -1,6 +1,8 @@
 plugins {
     kotlin("jvm") version "1.9.0"
     application
+    // Serialization configs.
+    kotlin("plugin.serialization") version "1.9.0"
 }
 
 repositories {
@@ -8,7 +10,12 @@ repositories {
 }
 
 dependencies {
+    // Coroutines configs.
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+
+    // Serialization configs.
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
+
 }
 
 application {
