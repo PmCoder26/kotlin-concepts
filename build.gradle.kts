@@ -16,6 +16,10 @@ dependencies {
     // Serialization configs.
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
 
+    // Data Science configs.
+    implementation("org.jetbrains.kotlinx:dataframe:1.0.0-Beta2")
+
+
 }
 
 application {
