@@ -1,20 +1,26 @@
 package data_science
 
 import org.jetbrains.kotlinx.dataframe.DataFrame
+import org.jetbrains.kotlinx.dataframe.api.*
+import org.jetbrains.kotlinx.dataframe.annotations.DataSchema
 import org.jetbrains.kotlinx.dataframe.api.columnOf
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
+import org.jetbrains.kotlinx.dataframe.api.next
+import org.jetbrains.kotlinx.dataframe.api.prev
 import org.jetbrains.kotlinx.dataframe.io.readCsv
+import org.jetbrains.kotlinx.dataframe.io.toHtml
 import java.io.File
+import java.lang.Class
 
 
 fun main() {
 
-    // reading the csv file.
+        // reading the csv file.
 //    val df = DataFrame.readCsv(File("src/main/kotlin/data_science/data.csv"))
 //    println("The dataframe is as below!")
 //    println(df)
 
-    // creating our own dataframe.
+        // creating our own dataframe.
                 // method-1
 //    val name by columnOf("Parimal", "Karunya", "Rohit", "Shashank", "Hemant")
 //    val gender by columnOf("MALE", "MALE", "MALE", "MALE", "MALE")
@@ -42,6 +48,7 @@ fun main() {
 //    println("Dataframe is")
 //    println(df)
 
+
                 // examples and exercises.
     // creating dataframe of tables from 1 to 10.
 //    val dfTable = dataFrameOf(1 .. 10) { x -> (1 .. 10).map { x * it }}
@@ -54,5 +61,45 @@ fun main() {
 //    }
 //    println("Dataframe of even numbers from 1 to 100 is as follows.")
 //    println(dfEven)
+
+//    var df = DataFrame.readCsv("src/main/kotlin/data_science/data.csv")
+    // getting the column names.
+//    println("Column names: ${df.columnNames()}")
+//    // getting the dimensions of df.
+//    println("Dimensions(row x column) are: (${df.rowsCount()} x ${df.columnsCount()})")
+//    // getting the data-types of columns.
+//    val columnTypes = df.columnNames().map { colName ->
+//        Pair(colName, df[colName].type())
+//    }
+//    println("Column data-types: $columnTypes")
+    // getting the previous and next row of the current row.
+//    val currRow = df[3]
+//    println("Previous row of currRow: ${currRow.prev()}")
+//    println("Next row of currRow: ${currRow.next()}")
+
+
+            // Other basic Dataframe operations
+    var df = DataFrame.readCsv("src/main/kotlin/data_science/data.csv")
+    // head operation (accessing first n rows)
+//    println(df.head(7))     // default: 5
+    // tail operation (accessing last n rows)
+//    println(df.tail(7))     // default: 5
+    // describe operation for summary statistics.
+//    println(df.describe())    // for all columns.
+//    println(df.describe("Age", "BMI", "Glucose"))     // for specific columns.
+    // iterating over all rows of df.
+//    for(row in df) {
+//        println(row["Age"])
+//    }
+    // filtering operation.
+//    val result = df.filter { "Age"<Int>() % 2 == 0 }
+//    println("DF with ages of odd numbers is as follows")
+//    println(result)
+//    val result = df.filter { ("Glucose"<Int>() > 80).and("Insulin"<Int>() > 2.0) }
+//    println("DF with glucose > 80 and Insulin > 2.0 is as follows")
+//    println(result)
+    //
+
+
 
 }
