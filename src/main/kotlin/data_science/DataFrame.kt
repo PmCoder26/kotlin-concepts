@@ -1,5 +1,6 @@
 package data_science
 
+import org.apache.poi.ss.formula.eval.ErrorEval.NA
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.*
 import org.jetbrains.kotlinx.dataframe.annotations.DataSchema
@@ -7,11 +8,13 @@ import org.jetbrains.kotlinx.dataframe.api.columnOf
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
 import org.jetbrains.kotlinx.dataframe.api.next
 import org.jetbrains.kotlinx.dataframe.api.prev
+import org.jetbrains.kotlinx.dataframe.columns.ColumnSet
 import org.jetbrains.kotlinx.dataframe.get
 import org.jetbrains.kotlinx.dataframe.io.readCsv
 import org.jetbrains.kotlinx.dataframe.io.toHtml
 import java.io.File
 import java.lang.Class
+import kotlin.Double.Companion.NaN
 
 
 fun main() {
@@ -141,24 +144,47 @@ fun main() {
 //    println(dfReversed)
 
     val df = dataFrameOf("firstName", "lastName", "age", "city", "weight", "isHappy")(
-        "Alice", "Cooper", 15, "London", 54, true,
-        "Bob", "Dylan", 45, "Dubai", 87, true,
-        "Charlie", "Daniels", 20, "Moscow", null, false,
-        "Charlie", "Chaplin", 40, "Milan", null, true,
-        "Bob", "Marley", 30, "Tokyo", 68, true,
-        "Alice", "Wolf", 20, null, 55, false,
-        "Charlie", "Byrd", 30, "Moscow", 90, true
+        "Alice", "Cooper", 15.0, "London", 54, true,
+        "Bob", "Dylan", 45.0, "Dubai", 87, true,
+        "Charlie", "Daniels", NaN, "Moscow", null, false,
+        "Charlie", "Chaplin", 40.0, "Milan", null, true,
+        "Bob", "Marley", 30.0, "Tokyo", 68, true,
+        "Alice", "Wolf", 20.0, null, 55, false,
+        "Charlie", "Byrd", 30.0, null, 90, true
     )
     // grouping the dataframe.
-    println("Grouped by firstName is: ")
-    println()
-    val dfGrouped = df.groupBy("firstName")
-    dfGrouped.forEach { it ->
-        println("***********************************************************")
-        println("Group is: ${it.key["firstName"]}")
-        println(it.group)
-        println("***********************************************************")
-    }
+//    println("Grouped by firstName is: ")
+//    println()
+//    val dfGrouped = df.groupBy("firstName")
+//    dfGrouped.forEach { it ->
+//        println("***********************************************************")
+//        println("Group is: ${it.key["firstName"]}")
+//        println(it.group)
+//        println("***********************************************************")
+//    }
+
+    /* filling the nulls, NA, NaNs in the dataframe(not an inplace operation).
+        functions: 1. with{} : Provide a new value for every selected cell given its row and its previous value using
+                               a row value expression.
+                   2. fillNulls{}: Fills all the null cells of the specified columns.
+                   3. fillNaNs{}: Replaces NaN values (Double.NaN and Float.NaN) with given value or expression.
+                   4. fillNA{}: Replaces NA values (null, Double.NaN, and Float.NaN) with given value or expression.
+
+     */
+    // returns the treated null values of columns of Int data-types.
+//    val dfNullsFilled = df.fillNulls { colsOf<Int?>() }.with { -1 }
+//    println("Original df:")
+//    println(df)
+//    println("NullsFilled df:")
+//    println(dfNullsFilled)
+    // returns the treated NaN values of columns of Double data-types.
+//    val dfNaNsFilled = df.fillNaNs { colsOf<Double?>() }.with { 0.0 }
+//    println("NaNsFilled df:")
+//    println(dfNaNsFilled)
+//    val dfNAFilled = df.fillNA { colsOf<String?>() }.with { "None" }
+//    println("NAFilled df:")
+//    println(dfNAFilled)
+
 
 
 
