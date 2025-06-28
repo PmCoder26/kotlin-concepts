@@ -1,19 +1,6 @@
-package data_science
+package data_science.dataframe
 
-import org.apache.poi.ss.formula.eval.ErrorEval.NA
-import org.jetbrains.kotlinx.dataframe.DataFrame
-import org.jetbrains.kotlinx.dataframe.api.*
-import org.jetbrains.kotlinx.dataframe.annotations.DataSchema
-import org.jetbrains.kotlinx.dataframe.api.columnOf
 import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
-import org.jetbrains.kotlinx.dataframe.api.next
-import org.jetbrains.kotlinx.dataframe.api.prev
-import org.jetbrains.kotlinx.dataframe.columns.ColumnSet
-import org.jetbrains.kotlinx.dataframe.get
-import org.jetbrains.kotlinx.dataframe.io.readCsv
-import org.jetbrains.kotlinx.dataframe.io.toHtml
-import java.io.File
-import java.lang.Class
 import kotlin.Double.Companion.NaN
 
 
