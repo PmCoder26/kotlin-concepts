@@ -1,6 +1,5 @@
 import kotlinx.coroutines.*
 
-
 @OptIn(ExperimentalCoroutinesApi::class)
 fun main() {
 
@@ -17,14 +16,14 @@ fun main() {
 //        println("Hello from outside the coroutine...")
 
         // A coroutineScope builder can be used inside any suspending function to perform multiple concurrent operations.
-        coroutineScope {
+//        coroutineScope {
 
-            val job1 = launch {
-                delay(1000)
-                println("I am job1")
-            }
+//            val job1 = launch {
+//                delay(1000)
+//                println("I am job1")
+//            }
 
-            val job2 = launch {
+//            val job2 = launch {
 //             Cancels the job1 coroutine and then executes the below task.
 //                job1.cancel()
 //             continues the below code execution after completion of the job1 coroutine
@@ -33,10 +32,10 @@ fun main() {
 //                job1.join()
 //             invokeOnCompletion { ... } registers a callback to run later, after the job completes — asynchronously.
 //             It does not suspend the current coroutine, and it does not block or wait.
-                job1.invokeOnCompletion {
-                    println("After completion of the job1....")
-                }
-                println("I am job2")
+//                job1.invokeOnCompletion {
+//                    println("After completion of the job1....")
+//                }
+//                println("I am job2")
 //            }
 
 //                val job3 = launch(CoroutineName("Job3")) {
@@ -63,9 +62,31 @@ fun main() {
 //                    println("I am job4")
 //                }
 
+//            }
+//        }
 
+        /*
+                                                    supervisorScope
+                The supervisorScope is a coroutine scope builder provided by Kotlin’s kotlinx.coroutines library that
+                enables structured concurrency with failure isolation between child coroutines. It ensures that a failure
+                in one child does not cancel its sibling coroutines.
+         */
+
+        supervisorScope {
+            launch {
+                println("Hello, I am the 1st launch{}, before crash...")
+                throw Exception("I am an unhandled exception!")
             }
 
+            launch {
+                delay(3000)
+                println("Hello, I am the 2nd launch{}, still survived after crash...")
+            }
+
+            launch {
+                delay(4000)
+                println("Hello, I am the 3rd launch{}, still survived after crash...")
+            }
 
         }
     }
