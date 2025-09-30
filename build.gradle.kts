@@ -19,6 +19,10 @@ dependencies {
     // Data Science configs.
     implementation("org.jetbrains.kotlinx:dataframe:1.0.0-Beta2")
 
+    // Ktor configs
+    implementation("io.ktor:ktor-network:2.3.5")   // TCP/UDP sockets
+    implementation("io.ktor:ktor-utils:2.3.5")
+
 
 }
 
